@@ -67,7 +67,12 @@ const Card = React.createClass({
     if (this.props.onExpandChange)
       this.props.onExpandChange(newExpandedState);
   },
-
+  //using expand prop to externaly control expanded state 
+  componentWillReceiveProps(nextProps){
+	 if(nextProps.expand !== this.props.expand){
+	    this.setState({ expanded: nextProps.expand });
+	  }
+	 },
   render() {
     let lastElement;
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
